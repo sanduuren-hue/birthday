@@ -1,0 +1,174 @@
+<body>
+
+  <div class="background"></div>
+
+  <!-- LOCK SCREEN -->
+  <section id="lockScreen" class="page">
+    <div class="card">
+      <div class="flower">🥀</div>
+
+      <div class="small-title">PRIVATE ACCESS</div>
+
+      <h1>For Lily</h1>
+
+      <p>Энэ бэлэг нууц кодтой. 🖤</p>
+
+      <form id="lockForm" style="margin-top:25px">
+        <input id="passcode" type="password" inputmode="numeric" maxlength="6" placeholder="Enter passcode"
+          autocomplete="off" style="
+          width:100%;
+          max-width:240px;
+          padding:14px;
+          border:1px solid #a3445c;
+          background:#1c0b14;
+          color:white;
+          text-align:center;
+          font-size:22px;
+          letter-spacing:8px;
+          outline:none;
+        ">
+
+        <br>
+
+        <button class="back" type="submit">
+          Unlock ♡
+        </button>
+      </form>
+
+      <p id="error" style="color:#f18a9f;margin-top:15px"></p>
+
+      <details style="margin-top:20px;color:#eaa2b3">
+        <summary style="cursor:pointer">Hint 💡</summary>
+        <p style="margin-top:12px;font-size:16px">
+          Хэн нэгний lockscreen code 🤫
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- YOUR EXISTING WEBSITE -->
+  <div id="website" class="hidden">
+    <main>
+      <section class="page" id="home">
+        <div class="small-title">A special day for someone special</div>
+        <h1>Happy Birthday, Lily</h1>
+
+        <p>
+          Гурван бэлэг чамайг хүлээж байна. 🥀<br>
+          Аль нэгийг нь сонгоод нээгээрэй.
+        </p>
+
+        <div class="gifts">
+          <button class="gift" onclick="openGift(1)">
+            <span>🎁</span><b>Gift One</b>
+          </button>
+
+          <button class="gift" onclick="openGift(2)">
+            <span>💌</span><b>Gift Two</b>
+          </button>
+
+          <button class="gift" onclick="openGift(3)">
+            <span>🖤</span><b>Gift Three</b>
+          </button>
+        </div>
+      </section>
+
+      <section class="page hidden" id="gift1">
+        <div class="small-title">Our little memory</div>
+        <h1>Just for You</h1>
+        <img class="photo" src="photo.jpg" alt="Special photo">
+        <p>Чамд зориулсан жижигхэн дурсамж. 🤍</p>
+        <button class="back" onclick="goHome()">← Буцах</button>
+      </section>
+
+      <section class="page hidden" id="gift2">
+        <div class="card">
+          <div class="flower">🥀</div>
+          <div class="small-title">A letter from the heart</div>
+          <h2>Dear Lily,</h2>
+
+          <p>
+            Төрсөн өдрийн мэнд хүргэе. 🤍
+
+            Чиний шинэ нас аз жаргал,
+            инээд хөөрөөр дүүрэн байг.
+
+            Spider lily цэцэг шиг
+            онцгой, дахин давтагдашгүй
+            байгаарай.
+
+            Мөрөөдөл бүр чинь биелж,
+            инээмсэглэл чинь үргэлж
+            гэрэлтэж байгаасай.
+
+            Happy Birthday, Lily. 🥀
+          </p>
+
+          <h2 style="font-size:36px;margin-top:25px">
+            With love ♡
+          </h2>
+        </div>
+
+        <button class="back" onclick="goHome()">← Буцах</button>
+      </section>
+
+      <section class="page hidden" id="gift3">
+        <div class="small-title">One last surprise</div>
+        <h1>One More Thing...</h1>
+        <p>Зүрхэн дээр дараарай. 🖤</p>
+        <div id="heart" onclick="reveal()">🖤</div>
+
+        <p id="surprise" class="hidden">
+          Чи энэ хорвоод ганцхан.
+          Үргэлж өөрийнхөөрөө гэрэлтээрэй. 🥀
+
+          Төрсөн өдрийн мэнд хүргэе!
+        </p>
+
+        <button class="back" onclick="goHome()">← Буцах</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const SECRET_CODE = "102392";
+
+    document.getElementById("lockForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const enteredCode = document.getElementById("passcode").value;
+
+      if (enteredCode === SECRET_CODE) {
+        document.getElementById("lockScreen").classList.add("hidden");
+        document.getElementById("website").classList.remove("hidden");
+        document.getElementById("error").textContent = "";
+      } else {
+        document.getElementById("error").textContent =
+          "Буруу код байна 🥀 Дахиад оролдоорой.";
+        document.getElementById("passcode").value = "";
+      }
+    });
+
+    function openGift(n) {
+      document.querySelectorAll("#website .page").forEach(p => {
+        p.classList.add("hidden");
+      });
+
+      document.getElementById("gift" + n).classList.remove("hidden");
+    }
+
+    function goHome() {
+      document.querySelectorAll("#website .page").forEach(p => {
+        p.classList.add("hidden");
+      });
+
+      document.getElementById("home").classList.remove("hidden");
+    }
+
+    function reveal() {
+      document.getElementById("heart").classList.add("hidden");
+      document.getElementById("surprise").classList.remove("hidden");
+    }
+  </script>
+
+</body>
